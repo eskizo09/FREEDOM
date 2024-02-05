@@ -90,32 +90,64 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1500);
     });
 });
+
 document.addEventListener('DOMContentLoaded', function() {
-    // DOM elements for the token value and market cap
-    const tokenValueElement = document.getElementById('token-value');
+    // DOM element for the token value
+    const tokenValueElement = document.getElementById('token-value-display');
+
+    // Fetch token data and update token value element
+    fetch('https://api.dexscreener.com/latest/dex/tokens/0x345a4614981307D70d052c41022f168ee14464ba')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Ensure we have pairs and use the first pair's priceUsd
+            if (data && data.pairs && data.pairs.length > 0) {
+                let priceUsd = data.pairs[0].priceUsd.replace(/,/g, '');
+                let formattedPriceUsd;
+
+                // Check if the priceUsd is a very small number
+                if (parseFloat(priceUsd) < 1) {
+                    let parts = priceUsd.split('.');
+                    let zeros = parts[1].match(/^0+/); // Match leading zeros
+                    let zeroCount = zeros ? zeros[0].length : 0;
+                    let significant = priceUsd.substring(priceUsd.indexOf(zeros) + zeroCount);
+                    formattedPriceUsd = `0.<small>${zeroCount}</small>${significant}`;
+                } else {
+                    // No need to format larger numbers
+                    formattedPriceUsd = parseFloat(priceUsd).toFixed(2);
+                }
+
+                tokenValueElement.innerHTML = `$${formattedPriceUsd}`;
+            } else {
+                throw new Error('No pairs data available');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching token data: ', error);
+            tokenValueElement.innerHTML = 'Error';
+        });
+});
+
+
+//MARKET CAP
+document.addEventListener('DOMContentLoaded', function() {
+    // DOM element for the market cap
     const marketCapElement = document.getElementById('market-cap');
 
     // Token total supply
     const totalSupply = 55555500000000; // The total supply for the market cap calculation
 
-    // Fetch token data and update elements
+    // Fetch token data and update market cap element
     fetch('https://api.dexscreener.com/latest/dex/tokens/0x345a4614981307D70d052c41022f168ee14464ba')
         .then(response => response.json())
         .then(data => {
-            // Make sure we have pairs and use the first pair's priceUsd
+            // Ensure we have pairs and use the first pair's priceUsd
             if (data.pairs && data.pairs.length > 0) {
                 let priceUsd = parseFloat(data.pairs[0].priceUsd.replace(/,/g, ''));
-
-                // Format the price for small numbers to show significant digits
-                if (priceUsd < 0.01) {
-                    // Adjust the precision as needed
-                    priceUsd = priceUsd.toPrecision(3);
-                } else {
-                    // For larger numbers, round to two decimal places
-                    priceUsd = priceUsd.toFixed(2);
-                }
-
-                tokenValueElement.textContent = `$${priceUsd}`;
 
                 // Calculate market cap: priceUsd * totalSupply
                 const marketCap = (priceUsd * totalSupply).toFixed(2);
@@ -126,9 +158,11 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Error fetching token data: ', error);
-            tokenValueElement.textContent = 'Error';
             marketCapElement.textContent = 'Error';
         });
 });
+
+
+
 
 

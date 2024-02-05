@@ -1,0 +1,122 @@
+/* style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background-color: #1e1e1e;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.stat-item h2 {
+    color: #00dffc;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.stat-item p {
+    color: #fff;
+    font-size: 2em;
+    margin: 0;
+}
+
+#token-address {
+    cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+    color: #00dffc; /* Example color for the clickable text */
+    display: inline-block; /* Allows block level behaviors like margin, padding */
+    word-break: break-all; /* Ensures the text breaks to prevent overflow */
+}
+
+#token-address:hover {
+    text-decoration: underline; /* Adds an underline on hover for better UX */
+}
+
+footer {
+    text-align: center;
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 40px;
+}
+
+#chart-container {
+    width: 80%; /* Adjust the width as desired, 80% is just an example */
+    max-width: 600px; /* Maximum width of the chart container */
+    min-width: 300px; /* Minimum width of the chart container */
+    height: 400px; /* Adjust the height as needed */
+    margin: 20px auto; /* Centers the chart in the middle of the page with margin */
+    padding: 10px; /* Optional: If you want padding around the chart */
+    border: 1px solid #00dffc; /* Optional: Adds a border around the chart container */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Adds a slight shadow for depth */
+    background-color: #121212; /* Optional: Sets a background color for the chart container */
+}
+
+/* style.css */
+
+/* ... Other styles ... */
+
+footer {
+    /* Existing footer styles */
+    position: relative; /* For absolute positioning of the popup */
+}
+
+#clickable-footer-element {
+    cursor: pointer;
+    /* Style as needed */
+}
+
+#footer-text::after {
+    content: '';
+    position: absolute;
+    bottom: 100%; /* Position above the element */
+    left: 50%; /* Start from the middle of the element */
+    transform: translateX(-50%); /* Center the popup */
+    white-space: nowrap; /* Keep the popup content on a single line */
+    z-index: 10; /* Ensure it's above other content */
+    background-color: #333; /* Background color for the popup */
+    color: #fff; /* Text color for the popup */
+    padding: 5px 10px; /* Padding around the text */
+    border-radius: 3px; /* Optional: rounded corners for the popup */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Optional: some shadow for depth */
+    opacity: 0; /* Start invisible */
+    transition: opacity 0.3s; /* Animate the opacity change */
+    pointer-events: none; /* Avoid blocking clicks on other elements */
+}
+
+#clickable-footer-element.active #footer-text::after {
+    content: 'Copied!'; /* The text to show when active */
+    opacity: 1; /* Make visible */
+}
+#tax-reflections-note {
+    font-size: 0.8em; /* Smaller font size */
+    color: #888; /* Less bright color */
+    text-align: center; /* Centered text */
+    margin-top: 10px; /* Space from the title */
+}

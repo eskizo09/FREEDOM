@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freedom Token Stats</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Freedom Token Stats on PulseChain</h1>
+            <p id="tax-reflections-note">1% tax reflections to all holders</p>
+
+        </header>
+        <main>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h2>Token Address</h2>
+                    <p id="token-address">Loading...</p>
+                </div>
+                <div class="stat-item">
+                    <h2>Name</h2>
+                    <p id="token-name">Loading...</p>
+                </div>
+                <div class="stat-item">
+                    <h2>Symbol</h2>
+                    <p id="token-symbol">Loading...</p>
+                </div>
+                <br>
+
+                <div class="stat-item">
+                    <h2>Total Supply</h2>
+                    <p id="total-supply">Loading...</p>
+                </div>
+                
+                <div class="stat-item">
+                    <h2>Token Holders</h2>
+                    <p id="token-holders-count">Loading...</p>
+                </div>
+                <div class="stat-item">
+                    <h2>Transfers</h2>
+                    <p id="transfers-count">Loading...</p>
+                </div>
+                <div class="stat-item">
+                    <h2>Token Value (USD)</h2>
+                    <p id="token-value"><span id="token-value-display">Loading...</span></p>
+                </div>
+                
+                <div class="stat-item">
+                    <h2>Market Cap (USD)</h2>
+                    <p id="market-cap">Loading...</p>
+                </div>
+                
+
+            </div>
+            <div id="chart-container">
+                <style>#dexscreener-embed{position:relative;width:100%;padding-bottom:125%;}@media(min-width:1400px){#dexscreener-embed{padding-bottom:65%;}}#dexscreener-embed iframe{position:absolute;width:100%;height:100%;top:0;left:0;border:0;}</style><div id="dexscreener-embed"><iframe src="https://dexscreener.com/pulsechain/0xA57BE94bC0e55652e3275c225FE2cbcFE285b281?embed=1&theme=dark&trades=0&info=0"></iframe></div>
+            </div>
+            
+            
+
+        </main>
+        <footer>
+            <p>DONATIONS :)</p>
+            <div id="clickable-footer-element">
+                <p id="footer-text">0xbbd22f65fb4F45A3231EF90b7A3982d8E815a572</p>
+            </div>
+        </footer>
+        
+    </div>
+
+    
+
+
+
+    <script src="script.js"></script>
+</body>
+</html>
